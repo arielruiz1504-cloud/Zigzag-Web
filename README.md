@@ -10,7 +10,6 @@ Servicios de imprenta y soluciones gráficas integradas.
 Este proyecto prescinde de frameworks complejos de JavaScript, apostando por un rendimiento óptimo y una arquitectura modular basada en estándares web:
 
 * **HTML5 Semantic:** Estructura clara y accesible orientada a SEO.
-* **Tailwind CSS (vía CDN con configuración extendida):** Utilidades de diseño adaptadas a la identidad visual de la marca (esquema CMYK / tonos corporativos).
 * **CSS3 Custom Properties (`styles.css`):** Variables de diseño, sistema de colores de marca y animaciones personalizadas de *scroll reveal*.
 * **JavaScript Vanilla (`main.js`):** Lógica desacoplada para la renderización dinámica de categorías, servicios, interactividad de pestañas y gestión del formulario de contacto.
 * **Lucide Icons:** Iconografía moderna y ligera.

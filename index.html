@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,319 +11,211 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Configuración de Tailwind -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['Archivo', 'sans-serif'],
-            sans: ['DM Sans', 'sans-serif'],
-          },
-          colors: {
-            background: 'var(--background)',
-            foreground: 'var(--foreground)',
-            card: 'var(--card)',
-            secondary: 'var(--secondary)',
-            muted: 'var(--muted)',
-            'muted-foreground': 'var(--muted-foreground)',
-            border: 'var(--border)',
-            input: 'var(--input)',
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Enlace al archivo CSS externo -->
+  <!-- Estilos CSS Nativos -->
   <link rel="stylesheet" href="styles.css">
 
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="min-h-screen bg-background">
+<body>
 
   <!-- Header -->
-  <header class="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
-    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-      
-      <!-- Logo -->
-      <a href="#inicio" class="group flex items-center gap-3">
-        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--cyan-brand)] font-display text-sm font-extrabold text-white shadow-sm transition-transform group-hover:scale-105">
-          ZZ
-        </span>
-        <span class="flex flex-col leading-none">
-          <span class="font-display text-xl font-extrabold tracking-tight text-foreground">
-            <span class="text-[var(--amber-brand)]">zig</span>zag
-          </span>
-          <span class="mt-1 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-            Soluciones Gráficas
-          </span>
-        </span>
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#inicio" class="logo-group">
+        <span class="logo-badge">ZZ</span>
+        <div class="logo-text">
+          <span class="logo-title"><span class="brand-amber">zig</span>zag</span>
+          <span class="logo-subtitle">Soluciones Gráficas</span>
+        </div>
       </a>
 
-      <!-- Navegación Desktop -->
-      <nav class="hidden items-center gap-8 text-sm font-medium text-muted-foreground md:flex">
-        <a href="#inicio" class="transition-colors hover:text-foreground">Inicio</a>
-        <a href="#categorias" class="transition-colors hover:text-foreground">Categorías</a>
-        <a href="#servicios" class="transition-colors hover:text-foreground">Servicios</a>
-        <a href="#nosotros" class="transition-colors hover:text-foreground">Nosotros</a>
-        <a href="#contacto" class="rounded-full bg-[var(--cyan-brand)] px-5 py-2.5 font-semibold text-white shadow-sm transition-all hover:brightness-95 hover:shadow-md">
-          Cotizar Proyecto
-        </a>
+      <nav class="desktop-nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#categorias">Categorías</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto" class="btn-cta-nav">Cotizar Proyecto</a>
       </nav>
 
-      <!-- Botón Menú Mobile -->
-      <button type="button" id="mobile-menu-btn" aria-label="Abrir menú" class="rounded-md p-2 text-foreground md:hidden">
-        <i data-lucide="menu" class="h-6 w-6" id="menu-icon-open"></i>
-        <i data-lucide="x" class="h-6 w-6 hidden" id="menu-icon-close"></i>
+      <button type="button" id="mobile-menu-btn" aria-label="Abrir menú" class="mobile-menu-btn">
+        <i data-lucide="menu" id="menu-icon-open"></i>
+        <i data-lucide="x" id="menu-icon-close" class="hidden"></i>
       </button>
     </div>
 
-    <!-- Navegación Mobile -->
-    <div id="mobile-menu" class="hidden space-y-2 border-b border-border bg-background px-4 pb-6 pt-2 shadow-lg md:hidden">
-      <a href="#inicio" class="mobile-link block py-2 font-medium text-muted-foreground">Inicio</a>
-      <a href="#categorias" class="mobile-link block py-2 font-medium text-muted-foreground">Categorías</a>
-      <a href="#servicios" class="mobile-link block py-2 font-medium text-muted-foreground">Servicios</a>
-      <a href="#nosotros" class="mobile-link block py-2 font-medium text-muted-foreground">Nosotros</a>
-      <a href="#contacto" class="mobile-link block rounded-xl bg-[var(--cyan-brand)] py-3 text-center font-semibold text-white">
-        Cotizar Proyecto
-      </a>
+    <div id="mobile-menu" class="mobile-menu hidden">
+      <a href="#inicio" class="mobile-link">Inicio</a>
+      <a href="#categorias" class="mobile-link">Categorías</a>
+      <a href="#servicios" class="mobile-link">Servicios</a>
+      <a href="#nosotros" class="mobile-link">Nosotros</a>
+      <a href="#contacto" class="mobile-link btn-mobile-cta">Cotizar Proyecto</a>
     </div>
   </header>
 
   <!-- Hero -->
-  <section id="inicio" class="relative overflow-hidden bg-[var(--ink)] py-24 lg:py-32">
-    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1920&q=80" alt="Impresora de gran formato" class="absolute inset-0 h-full w-full scale-105 object-cover opacity-30 mix-blend-luminosity" />
-    <div class="absolute inset-0 bg-gradient-to-r from-[var(--ink)] via-[var(--ink)]/85 to-transparent"></div>
-    <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="max-w-2xl">
-        <span class="inline-block rounded-full border border-[var(--amber-brand)]/30 bg-[var(--amber-brand)]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--amber-brand)]">
-          Imprenta y Soluciones Gráficas Integrales
-        </span>
-        <h1 class="mt-6 font-display text-4xl font-extrabold leading-none tracking-tight text-white sm:text-5xl lg:text-6xl">
-          Tu Imagen, <span class="text-[var(--amber-brand)]">Tu Huella</span>
-        </h1>
-        <p class="mt-6 text-lg leading-relaxed text-white/70">
+  <section id="inicio" class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-text-container">
+        <span class="hero-badge">Imprenta y Soluciones Gráficas Integrales</span>
+        <h1 class="hero-title">Tu Imagen, <span class="brand-amber">Tu Huella</span></h1>
+        <p class="hero-description">
           Transformamos tus ideas en piezas gráficas de alto impacto. Desde el diseño de marca hasta la impresión en gran formato y acabados de precisión para potenciar tu negocio.
         </p>
-        <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-          <a href="#contacto" class="rounded-xl bg-[var(--amber-brand)] px-8 py-4 text-center font-bold text-[var(--ink)] shadow-lg transition-all hover:-translate-y-0.5 hover:brightness-105">
-            Solicitar Presupuesto
-          </a>
-          <a href="#categorias" class="rounded-xl bg-white/10 px-8 py-4 text-center font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20">
-            Ver Categorías
-          </a>
+        <div class="hero-actions">
+          <a href="#contacto" class="btn-primary">Solicitar Presupuesto</a>
+          <a href="#categorias" class="btn-secondary">Ver Categorías</a>
         </div>
-        <dl class="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-white/10 pt-8">
+        <div class="hero-stats">
           <div>
-            <dt class="font-display text-2xl font-extrabold text-white">+18</dt>
-            <dd class="mt-1 text-xs uppercase tracking-wider text-white/50">años de oficio</dd>
+            <span class="stat-number">+18</span>
+            <span class="stat-label">años de oficio</span>
           </div>
           <div>
-            <dt class="font-display text-2xl font-extrabold text-white">+1.200</dt>
-            <dd class="mt-1 text-xs uppercase tracking-wider text-white/50">proyectos impresos</dd>
+            <span class="stat-number">+1.200</span>
+            <span class="stat-label">proyectos impresos</span>
           </div>
           <div>
-            <dt class="font-display text-2xl font-extrabold text-white">48h</dt>
-            <dd class="mt-1 text-xs uppercase tracking-wider text-white/50">entregas express</dd>
+            <span class="stat-number">48h</span>
+            <span class="stat-label">entregas express</span>
           </div>
-        </dl>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Categorías -->
-  <section id="categorias" class="border-b border-border bg-background py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="reveal mx-auto max-w-3xl text-center">
-        <span class="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
-          <span class="h-1.5 w-1.5 rounded-full bg-[var(--amber-brand)]"></span>
-          Categorías
-        </span>
-        <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-          Explora nuestras categorías gráficas
-        </h2>
-        <p class="mt-4 text-lg text-muted-foreground">Cinco líneas de trabajo que cubren todo el ciclo: desde la creación de tu marca hasta la pieza impresa instalada.</p>
-        <div class="mx-auto mt-6 h-1 w-20 rounded-full cmyk-bar"></div>
-      </div>
-
-      <div class="mt-12 flex flex-wrap justify-center gap-2" id="category-buttons"></div>
-
-      <div class="mt-10 grid items-center gap-10 rounded-3xl border border-border bg-secondary/50 p-6 card-soft lg:grid-cols-2 lg:p-10" id="category-content-container"></div>
+  <section id="categorias" class="section-container bg-white">
+    <div class="section-header reveal">
+      <span class="section-tag"><span class="dot-amber"></span>Categorías</span>
+      <h2>Explora nuestras categorías gráficas</h2>
+      <p>Cinco líneas de trabajo que cubren todo el ciclo: desde la creación de tu marca hasta la pieza impresa instalada.</p>
+      <div class="cmyk-bar"></div>
     </div>
+
+    <div id="category-buttons" class="category-buttons-container"></div>
+    <div id="category-content-container" class="category-content-box reveal"></div>
   </section>
 
   <!-- Servicios -->
-  <section id="servicios" class="bg-secondary/40 py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="reveal mx-auto max-w-3xl text-center">
-        <span class="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
-          <span class="h-1.5 w-1.5 rounded-full bg-[var(--amber-brand)]"></span>
-          Servicios
-        </span>
-        <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-          Nuestras soluciones y servicios
-        </h2>
-        <p class="mt-4 text-lg text-muted-foreground">Soluciones especializadas agrupadas para cubrir cada necesidad visual y de impresión de tu empresa.</p>
-        <div class="mx-auto mt-6 h-1 w-20 rounded-full cmyk-bar"></div>
-      </div>
-
-      <div class="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3" id="services-grid"></div>
+  <section id="servicios" class="section-container bg-secondary">
+    <div class="section-header reveal">
+      <span class="section-tag"><span class="dot-amber"></span>Servicios</span>
+      <h2>Nuestras soluciones y servicios</h2>
+      <p>Soluciones especializadas agrupadas para cubrir cada necesidad visual y de impresión de tu empresa.</p>
+      <div class="cmyk-bar"></div>
     </div>
+
+    <div id="services-grid" class="services-grid"></div>
   </section>
 
   <!-- Nosotros -->
-  <section id="nosotros" class="border-t border-border bg-background py-20">
-    <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+  <section id="nosotros" class="section-container bg-white border-top">
+    <div class="about-grid">
       <div class="reveal">
-        <div class="max-w-2xl">
-          <span class="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
-            <span class="h-1.5 w-1.5 rounded-full bg-[var(--amber-brand)]"></span>
-            Nosotros
-          </span>
-          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-            Comprometidos con la excelencia gráfica
-          </h2>
-          <div class="mt-6 h-1 w-20 rounded-full cmyk-bar"></div>
-        </div>
-        <p class="mt-6 text-lg leading-relaxed text-muted-foreground">
-          En <strong class="text-foreground">Zig-Zag SpA</strong> combinamos creatividad estratégica, tecnología de impresión avanzada y un enfoque centrado en los resultados de cada cliente.
+        <span class="section-tag"><span class="dot-amber"></span>Nosotros</span>
+        <h2>Comprometidos con la excelencia gráfica</h2>
+        <div class="cmyk-bar"></div>
+        <p class="about-text">
+          En <strong class="text-dark">Zig-Zag SpA</strong> combinamos creatividad estratégica, tecnología de impresión avanzada y un enfoque centrado en los resultados de cada cliente.
         </p>
-        <ul class="mt-6 space-y-4 font-medium">
-          <li class="flex items-center gap-3">
-            <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--teal-brand)] text-white">
-              <i data-lucide="check" class="h-3.5 w-3.5"></i>
-            </span>
-            Uso de materias primas e insumos eco-amigables.
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--teal-brand)] text-white">
-              <i data-lucide="check" class="h-3.5 w-3.5"></i>
-            </span>
-            Equipo humano calificado y asesoría personalizada.
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--teal-brand)] text-white">
-              <i data-lucide="check" class="h-3.5 w-3.5"></i>
-            </span>
-            Precios competitivos y tiempos de entrega eficientes.
-          </li>
+        <ul class="about-list">
+          <li><span class="check-icon"><i data-lucide="check"></i></span> Uso de materias primas e insumos eco-amigables.</li>
+          <li><span class="check-icon"><i data-lucide="check"></i></span> Equipo humano calificado y asesoría personalizada.</li>
+          <li><span class="check-icon"><i data-lucide="check"></i></span> Precios competitivos y tiempos de entrega eficientes.</li>
         </ul>
       </div>
       
       <div class="reveal" data-delay="150">
-        <div class="relative overflow-hidden rounded-3xl bg-[var(--ink)] p-8 text-white shadow-xl">
-          <div class="absolute inset-x-0 top-0 h-1.5 cmyk-bar"></div>
-          <span class="text-sm font-semibold uppercase tracking-wider text-[var(--amber-brand)]">
-            Garantía Zig-Zag
-          </span>
-          <h3 class="mt-2 font-display text-2xl font-bold text-white">
-            ¿Listo para renovar la imagen de tu marca?
-          </h3>
-          <p class="mt-4 text-sm text-white/70">
-            Escríbenos con los requerimientos de tu próximo proyecto gráfico y te responderemos de inmediato.
-          </p>
-          <a href="#contacto" class="mt-6 inline-block rounded-xl bg-[var(--amber-brand)] px-6 py-3 font-bold text-[var(--ink)] transition-all hover:brightness-105 hover:shadow-lg">
-            Hablemos de tu proyecto
-          </a>
+        <div class="about-card">
+          <div class="cmyk-bar-top"></div>
+          <span class="badge-amber">Garantía Zig-Zag</span>
+          <h3>¿Listo para renovar la imagen de tu marca?</h3>
+          <p>Escríbenos con los requerimientos de tu próximo proyecto gráfico y te responderemos de inmediato.</p>
+          <a href="#contacto" class="btn-amber">Hablemos de tu proyecto</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Contacto -->
-  <section id="contacto" class="bg-secondary/40 py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="reveal mx-auto max-w-3xl text-center">
-        <span class="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
-          <span class="h-1.5 w-1.5 rounded-full bg-[var(--amber-brand)]"></span>
-          Contacto
-        </span>
-        <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-          Ponte en contacto
-        </h2>
-        <p class="mt-4 text-lg text-muted-foreground">Visítanos en Santiago o envíanos un mensaje para cotizar cualquiera de nuestras soluciones.</p>
-        <div class="mx-auto mt-6 h-1 w-20 rounded-full cmyk-bar"></div>
+  <section id="contacto" class="section-container bg-secondary border-top">
+    <div class="section-header reveal">
+      <span class="section-tag"><span class="dot-amber"></span>Contacto</span>
+      <h2>Ponte en contacto</h2>
+      <p>Visítanos en Santiago o envíanos un mensaje para cotizar cualquiera de nuestras soluciones.</p>
+      <div class="cmyk-bar"></div>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Formulario -->
+      <div class="reveal">
+        <form id="contact-form" class="contact-form">
+          <div class="form-group">
+            <label for="nombre">Nombre o Empresa</label>
+            <input id="nombre" required placeholder="Ej. Juan Pérez / Empresa SpA" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="tel">Teléfono</label>
+              <input id="tel" type="tel" placeholder="+56 9 ..." />
+            </div>
+            <div class="form-group">
+              <label for="email">Correo Electrónico</label>
+              <input id="email" type="email" required placeholder="correo@ejemplo.cl" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="categoria">Categoría o Servicio de Interés</label>
+            <select id="categoria">
+              <option value="branding">01. Identidad de Marca</option>
+              <option value="publicidad">02. Diseño Publicitario</option>
+              <option value="editorial">03. Diseño Editorial</option>
+              <option value="granformato">04. Gran Formato e Impresión</option>
+              <option value="digital">05. Diseño Digital y Redes</option>
+              <option value="otro">Otro requerimiento</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="detalle">Detalles del Requerimiento</label>
+            <textarea id="detalle" rows="4" placeholder="Indícanos formatos, cantidades o requerimientos específicos..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Enviar Solicitud de Cotización</button>
+          <p id="form-success" class="form-success hidden">¡Gracias! Recibimos tu solicitud y te contactaremos a la brevedad.</p>
+        </form>
       </div>
 
-      <div class="mt-14 grid gap-12 lg:grid-cols-2">
-        <!-- Formulario -->
-        <div class="reveal">
-          <form id="contact-form" class="space-y-6 rounded-3xl border border-border bg-card p-8">
-            <div>
-              <label class="mb-2 block text-sm font-semibold" for="nombre">Nombre o Empresa</label>
-              <input id="nombre" required placeholder="Ej. Juan Pérez / Empresa SpA" class="w-full rounded-xl border border-input bg-background px-4 py-3 outline-none transition-all focus:border-[var(--cyan-brand)] focus:ring-2 focus:ring-[var(--cyan-brand)]/20" />
-            </div>
-            <div class="grid gap-6 sm:grid-cols-2">
+      <!-- Info Contacto -->
+      <div class="reveal" data-delay="150">
+        <div class="contact-info-wrapper">
+          <div class="contact-card">
+            <h3>Información Directa</h3>
+            <div class="contact-item">
+              <i data-lucide="map-pin" class="text-cyan"></i>
               <div>
-                <label class="mb-2 block text-sm font-semibold" for="tel">Teléfono</label>
-                <input id="tel" type="tel" placeholder="+56 9 ..." class="w-full rounded-xl border border-input bg-background px-4 py-3 outline-none transition-all focus:border-[var(--cyan-brand)] focus:ring-2 focus:ring-[var(--cyan-brand)]/20" />
+                <strong>Ubicación</strong>
+                San Alfonso 1010, Santiago, Región Metropolitana.
               </div>
+            </div>
+            <div class="contact-item">
+              <i data-lucide="phone" class="text-magenta"></i>
               <div>
-                <label class="mb-2 block text-sm font-semibold" for="email">Correo Electrónico</label>
-                <input id="email" type="email" required placeholder="correo@ejemplo.cl" class="w-full rounded-xl border border-input bg-background px-4 py-3 outline-none transition-all focus:border-[var(--cyan-brand)] focus:ring-2 focus:ring-[var(--cyan-brand)]/20" />
+                <strong>Teléfonos</strong>
+                <a href="tel:+56225545466">+562 255 454 66</a> / <a href="tel:+56992554278">+569 925 542 78</a>
               </div>
             </div>
-            <div>
-              <label class="mb-2 block text-sm font-semibold" for="categoria">Categoría o Servicio de Interés</label>
-              <select id="categoria" class="w-full rounded-xl border border-input bg-background px-4 py-3 outline-none transition-all focus:border-[var(--cyan-brand)] focus:ring-2 focus:ring-[var(--cyan-brand)]/20">
-                <option value="branding">01. Identidad de Marca</option>
-                <option value="publicidad">02. Diseño Publicitario</option>
-                <option value="editorial">03. Diseño Editorial</option>
-                <option value="granformato">04. Gran Formato e Impresión</option>
-                <option value="digital">05. Diseño Digital y Redes</option>
-                <option value="otro">Otro requerimiento</option>
-              </select>
-            </div>
-            <div>
-              <label class="mb-2 block text-sm font-semibold" for="detalle">Detalles del Requerimiento</label>
-              <textarea id="detalle" rows="4" placeholder="Indícanos formatos, cantidades o requerimientos específicos..." class="w-full rounded-xl border border-input bg-background px-4 py-3 outline-none transition-all focus:border-[var(--cyan-brand)] focus:ring-2 focus:ring-[var(--cyan-brand)]/20"></textarea>
-            </div>
-            <button type="submit" class="w-full rounded-xl bg-[var(--ink)] py-4 font-bold text-white transition-all hover:shadow-lg">
-              Enviar Solicitud de Cotización
-            </button>
-            <p id="form-success" class="hidden text-center text-sm font-semibold text-[var(--teal-brand)] mt-4">
-              ¡Gracias! Recibimos tu solicitud y te contactaremos a la brevedad.
-            </p>
-          </form>
-        </div>
-
-        <!-- Info Contacto -->
-        <div class="reveal" data-delay="150">
-          <div class="flex h-full flex-col gap-8">
-            <div class="space-y-6 rounded-3xl border border-border bg-card p-8">
-              <h3 class="font-display text-xl font-bold">Información Directa</h3>
-              <div class="flex items-start gap-4">
-                <i data-lucide="map-pin" class="mt-1 h-5 w-5 text-[var(--cyan-brand)]"></i>
-                <div class="text-muted-foreground">
-                  <strong class="block text-foreground">Ubicación</strong>
-                  San Alfonso 1010, Santiago, Región Metropolitana.
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <i data-lucide="phone" class="mt-1 h-5 w-5 text-[var(--magenta-brand)]"></i>
-                <div class="text-muted-foreground">
-                  <strong class="block text-foreground">Teléfonos</strong>
-                  <a href="tel:+56225545466" class="hover:text-foreground">+562 255 454 66</a> / 
-                  <a href="tel:+56992554278" class="hover:text-foreground">+569 925 542 78</a>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <i data-lucide="mail" class="mt-1 h-5 w-5 text-[var(--amber-brand)]"></i>
-                <div class="text-muted-foreground">
-                  <strong class="block text-foreground">Correos</strong>
-                  ventas@zigzagspa.cl<br />
-                  pananias@zigzagspa.cl / luis.menares@zigzagspa.cl
-                </div>
+            <div class="contact-item">
+              <i data-lucide="mail" class="text-amber"></i>
+              <div>
+                <strong>Correos</strong>
+                ventas@zigzagspa.cl<br />
+                pananias@zigzagspa.cl / luis.menares@zigzagspa.cl
               </div>
             </div>
-            <div class="overflow-hidden rounded-3xl border border-border">
-              <iframe title="Ubicación Zig-Zag SpA" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3328.7905781387534!2d-70.67104938479901!3d-33.45470718077271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c4fc7ab08b79%3A0xc3f8ec8a29a28db9!2sSan%20Alfonso%201010%2C%20Santiago%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses-419!2scl!4v1655000000000!5m2!1ses-419!2scl" class="h-64 w-full border-0" loading="lazy"></iframe>
-            </div>
+          </div>
+          <div class="map-container">
+            <iframe title="Ubicación Zig-Zag SpA" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3328.7905781387534!2d-70.67104938479901!3d-33.45470718077271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c4fc7ab08b79%3A0xc3f8ec8a29a28db9!2sSan%20Alfonso%201010%2C%20Santiago%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses-419!2scl!4v1655000000000!5m2!1ses-419!2scl" loading="lazy"></iframe>
           </div>
         </div>
       </div>
@@ -331,68 +223,48 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-[var(--ink)] pt-16 text-white/60">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid gap-10 md:grid-cols-4">
-        <div class="md:col-span-1">
-          <a href="#inicio" class="group flex items-center gap-3">
-            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--cyan-brand)] font-display text-sm font-extrabold text-white shadow-sm transition-transform group-hover:scale-105">
-              ZZ
-            </span>
-            <span class="flex flex-col leading-none">
-              <span class="font-display text-xl font-extrabold tracking-tight text-white">
-                <span class="text-[var(--amber-brand)]">zig</span>zag
-              </span>
-              <span class="mt-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white/60">
-                Soluciones Gráficas
-              </span>
-            </span>
-          </a>
-          <p class="mt-4 text-sm">
-            Imprenta y soluciones gráficas integrales en Santiago. Diseño, impresión y acabados bajo un mismo techo.
-          </p>
-        </div>
-        <div>
-          <h4 class="font-display text-sm font-bold uppercase tracking-wider text-white">Categorías</h4>
-          <ul class="mt-4 space-y-2 text-sm" id="footer-categories"></ul>
-        </div>
-        <div>
-          <h4 class="font-display text-sm font-bold uppercase tracking-wider text-white">Navegación</h4>
-          <ul class="mt-4 space-y-2 text-sm">
-            <li><a href="#inicio" class="transition-colors hover:text-[var(--amber-brand)]">Inicio</a></li>
-            <li><a href="#categorias" class="transition-colors hover:text-[var(--amber-brand)]">Categorías</a></li>
-            <li><a href="#servicios" class="transition-colors hover:text-[var(--amber-brand)]">Servicios</a></li>
-            <li><a href="#nosotros" class="transition-colors hover:text-[var(--amber-brand)]">Nosotros</a></li>
-            <li><a href="#contacto" class="transition-colors hover:text-[var(--amber-brand)]">Cotizar Proyecto</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-display text-sm font-bold uppercase tracking-wider text-white">Contacto</h4>
-          <ul class="mt-4 space-y-3 text-sm">
-            <li class="flex items-start gap-2">
-              <i data-lucide="map-pin" class="mt-0.5 h-4 w-4 shrink-0 text-[var(--cyan-brand)]"></i>
-              San Alfonso 1010, Santiago, RM
-            </li>
-            <li class="flex items-start gap-2">
-              <i data-lucide="phone" class="mt-0.5 h-4 w-4 shrink-0 text-[var(--magenta-brand)]"></i>
-              +562 255 454 66
-            </li>
-            <li class="flex items-start gap-2">
-              <i data-lucide="mail" class="mt-0.5 h-4 w-4 shrink-0 text-[var(--amber-brand)]"></i>
-              ventas@zigzagspa.cl
-            </li>
-          </ul>
-        </div>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <a href="#inicio" class="logo-group">
+          <span class="logo-badge">ZZ</span>
+          <div class="logo-text">
+            <span class="logo-title white"><span class="brand-amber">zig</span>zag</span>
+            <span class="logo-subtitle light">Soluciones Gráficas</span>
+          </div>
+        </a>
+        <p class="footer-desc">Imprenta y soluciones gráficas integrales en Santiago. Diseño, impresión y acabados bajo un mismo techo.</p>
       </div>
-      <div class="mt-12 h-1 w-full rounded-full cmyk-bar"></div>
-      <div class="flex flex-col items-center justify-between gap-3 py-6 text-xs md:flex-row">
-        <p>© 2026 Zig-Zag SpA Soluciones Gráficas. Todos los derechos reservados.</p>
-        <p>Santiago · Región Metropolitana · Chile</p>
+      <div>
+        <h4 class="footer-heading">Categorías</h4>
+        <ul id="footer-categories" class="footer-links"></ul>
       </div>
+      <div>
+        <h4 class="footer-heading">Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#categorias">Categorías</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#contacto">Cotizar Proyecto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Contacto</h4>
+        <ul class="footer-contact-list">
+          <li><i data-lucide="map-pin" class="text-cyan"></i> San Alfonso 1010, Santiago, RM</li>
+          <li><i data-lucide="phone" class="text-magenta"></i> +562 255 454 66</li>
+          <li><i data-lucide="mail" class="text-amber"></i> ventas@zigzagspa.cl</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cmyk-bar"></div>
+    <div class="footer-bottom">
+      <p>© 2026 Zig-Zag SpA Soluciones Gráficas. Todos los derechos reservados.</p>
+      <p>Santiago · Región Metropolitana · Chile</p>
     </div>
   </footer>
 
-  <!-- Enlace al archivo JS externo -->
   <script src="main.js"></script>
 </body>
 </html>

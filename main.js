@@ -1,4 +1,3 @@
-
 // Inicializar Iconos
 lucide.createIcons();
 
@@ -57,55 +56,61 @@ function initCategories() {
   categories.forEach((cat, i) => {
     // --- 1. Botones de Pestañas ---
     const btn = document.createElement('button');
-    btn.className = `cat-btn flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-all ${i === activeCategory ? 'text-white shadow-md' : 'border-border bg-secondary text-muted-foreground hover:text-foreground'}`;
+    btn.className = `cat-btn ${i === activeCategory ? 'active' : ''}`;
     if(i === activeCategory) {
       btn.style.backgroundColor = cat.color;
       btn.style.borderColor = cat.color;
+      btn.style.color = '#fff';
+      btn.style.boxShadow = '0 4px 6px -1px rgba(0,0,0,0.1)';
     }
     btn.onclick = () => switchCategory(i);
-    btn.innerHTML = `<i data-lucide="${cat.icon}" class="h-4 w-4"></i> ${cat.short}`;
+    btn.innerHTML = `<i data-lucide="${cat.icon}" style="width: 1rem; height: 1rem;"></i> ${cat.short}`;
     categoryButtonsContainer.appendChild(btn);
 
     // --- 2. Tarjetas de Servicios ---
     const srvBtn = document.createElement('button');
-    srvBtn.className = 'group flex h-full w-full flex-col rounded-2xl border border-border bg-card p-8 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl reveal';
+    srvBtn.className = 'service-card reveal';
     srvBtn.setAttribute('data-delay', i * 80);
     srvBtn.onclick = () => { 
       switchCategory(i); 
       document.getElementById('categorias').scrollIntoView({ behavior: 'smooth' }); 
     };
     
-    let itemsHtml = cat.items.slice(0,3).map(it => `<li class="flex items-center gap-2"><span class="font-bold" style="color: ${cat.color}">•</span>${it}</li>`).join('');
+    let itemsHtml = cat.items.slice(0,3).map(it => `
+      <li style="display: flex; align-items: center; gap: 0.5rem;">
+        <span style="font-weight: 700; color: ${cat.color}">•</span>${it}
+      </li>
+    `).join('');
     
     srvBtn.innerHTML = `
-      <span class="mb-6 flex h-14 w-14 items-center justify-center rounded-xl transition-colors" style="background-color: color-mix(in srgb, ${cat.color} 12%, transparent)">
-        <i data-lucide="${cat.icon}" class="h-6 w-6" style="color: ${cat.color}"></i>
-      </span>
-      <span class="font-display text-lg font-bold text-foreground">${cat.n}. ${cat.name}</span>
-      <span class="mt-2 text-xs text-muted-foreground">${cat.desc}</span>
-      <ul class="mt-4 space-y-2 text-sm text-muted-foreground">${itemsHtml}</ul>
-      <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-foreground">
-        Ver categoría <i data-lucide="arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-1"></i>
+      <div class="service-icon-box" style="background-color: color-mix(in srgb, ${cat.color} 12%, transparent)">
+        <i data-lucide="${cat.icon}" style="width: 1.5rem; height: 1.5rem; color: ${cat.color}"></i>
+      </div>
+      <span class="service-title">${cat.n}. ${cat.name}</span>
+      <span class="service-desc">${cat.desc}</span>
+      <ul class="service-items-list">${itemsHtml}</ul>
+      <span class="service-link">
+        Ver categoría <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
       </span>
     `;
     servicesGrid.appendChild(srvBtn);
 
     // --- 3. Enlaces del Footer ---
     const footerLi = document.createElement('li');
-    footerLi.innerHTML = `<a href="#categorias" class="transition-colors hover:text-[var(--amber-brand)]" onclick="switchCategory(${i})">${cat.name}</a>`;
+    footerLi.innerHTML = `<a href="#categorias" onclick="switchCategory(${i})">${cat.name}</a>`;
     footerCategories.appendChild(footerLi);
   });
 
   // Añadir la última tarjeta especial a los servicios
   const specialSrv = document.createElement('div');
-  specialSrv.className = 'reveal flex h-full flex-col justify-center rounded-2xl bg-[var(--ink)] p-8 text-white';
+  specialSrv.className = 'service-card-special reveal';
   specialSrv.setAttribute('data-delay', 400);
   specialSrv.innerHTML = `
-    <i data-lucide="sparkles" class="h-7 w-7 text-[var(--amber-brand)]"></i>
-    <h3 class="mt-4 font-display text-xl font-bold text-white">¿No encuentras lo que buscas?</h3>
-    <p class="mt-2 text-sm text-white/70">Producimos piezas a medida: troqueles especiales, empaques, acabados con relieve, laminados y barnices selectivos.</p>
-    <a href="#contacto" class="mt-6 inline-flex w-fit items-center gap-2 rounded-xl bg-[var(--amber-brand)] px-5 py-3 font-bold text-[var(--ink)] transition-all hover:brightness-105">
-      Consultar <i data-lucide="arrow-right" class="h-4 w-4"></i>
+    <i data-lucide="sparkles" style="width: 1.75rem; height: 1.75rem; color: var(--amber-brand)"></i>
+    <h3>¿No encuentras lo que buscas?</h3>
+    <p>Producimos piezas a medida: troqueles especiales, empaques, acabados con relieve, laminados y barnices selectivos.</p>
+    <a href="#contacto" class="btn-special">
+      Consultar <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
     </a>
   `;
   servicesGrid.appendChild(specialSrv);
@@ -122,13 +127,15 @@ function switchCategory(index) {
   categories.forEach((cat, i) => {
     const btn = btns[i];
     if (i === index) {
-      btn.className = 'cat-btn flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-all text-white shadow-md';
       btn.style.backgroundColor = cat.color;
       btn.style.borderColor = cat.color;
+      btn.style.color = '#fff';
+      btn.style.boxShadow = '0 4px 6px -1px rgba(0,0,0,0.1)';
     } else {
-      btn.className = 'cat-btn flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-all border-border bg-secondary text-muted-foreground hover:text-foreground';
       btn.style.backgroundColor = '';
       btn.style.borderColor = '';
+      btn.style.color = '';
+      btn.style.boxShadow = '';
     }
   });
   
@@ -140,27 +147,27 @@ function switchCategory(index) {
 function renderCategoryContent() {
   const cat = categories[activeCategory];
   let itemsHtml = cat.items.map(it => `
-    <li class="flex items-center gap-3 text-sm font-medium">
-      <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white" style="background-color: ${cat.color}">
-        <i data-lucide="check" class="h-3.5 w-3.5"></i>
+    <li class="category-list-item">
+      <span class="category-check-icon" style="background-color: ${cat.color}">
+        <i data-lucide="check" style="width: 0.875rem; height: 0.875rem;"></i>
       </span>
       ${it}
     </li>
   `).join('');
 
   categoryContentContainer.innerHTML = `
-    <div class="relative overflow-hidden rounded-2xl">
-      <img src="${cat.image}" alt="${cat.name}" loading="lazy" class="h-72 w-full object-cover duration-500 lg:h-[26rem]" style="animation: fadeIn 0.5s ease-in-out;" />
-      <span class="absolute left-4 top-4 rounded-full px-3 py-1 font-display text-xs font-extrabold text-white" style="background-color: ${cat.color}">
+    <div class="category-media">
+      <img src="${cat.image}" alt="${cat.name}" loading="lazy" />
+      <span class="category-badge-floating" style="background-color: ${cat.color}">
         ${cat.n}
       </span>
     </div>
-    <div style="animation: fadeIn 0.5s ease-in-out;">
-      <h3 class="font-display text-2xl font-extrabold text-foreground sm:text-3xl">${cat.name}</h3>
-      <p class="mt-4 text-muted-foreground">${cat.desc}</p>
-      <ul class="mt-6 space-y-3">${itemsHtml}</ul>
-      <a href="#contacto" class="mt-8 inline-flex items-center gap-2 rounded-xl bg-[var(--ink)] px-6 py-3 font-bold text-white transition-all hover:-translate-y-0.5">
-        Cotizar ${cat.short} <i data-lucide="arrow-right" class="h-4 w-4"></i>
+    <div class="category-details">
+      <h3>${cat.name}</h3>
+      <p>${cat.desc}</p>
+      <ul class="category-list">${itemsHtml}</ul>
+      <a href="#contacto" class="btn-category-action">
+        Cotizar ${cat.short} <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
       </a>
     </div>
   `;
