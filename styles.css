@@ -1,0 +1,57 @@
+
+:root {
+  --cyan-brand: #009de0;
+  --magenta-brand: #e2007a;
+  --amber-brand: #ff9e1b;
+  --teal-brand: #00c1d5;
+  --ink: #1f1a24;
+  
+  --gradient-cmyk: linear-gradient(90deg, var(--cyan-brand), var(--magenta-brand), var(--amber-brand), var(--teal-brand));
+  --shadow-soft: 0 18px 45px -25px rgba(31, 26, 36, 0.45);
+  
+  /* Modo Claro */
+  --background: #ffffff;
+  --foreground: #1f1a24;
+  --card: #ffffff;
+  --secondary: #f4f4f5;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'DM Sans', sans-serif;
+}
+
+h1, h2, h3, .font-display {
+  font-family: 'Archivo', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.cmyk-bar {
+  background: var(--gradient-cmyk);
+}
+
+.card-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+/* Animaciones personalizadas de Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: all 700ms ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
