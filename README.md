@@ -23,3 +23,10 @@ Este proyecto prescinde de frameworks complejos de JavaScript, apostando por un 
 * **Animaciones de Entrada:** Efectos visuales de aparición progresiva al hacer scroll (Intersection Observer).
 
 * **Formulario de Contacto Interactivo:** Simulación de envío con validación y confirmación visual instantánea.
+
+## 🚀 Últimas Actualizaciones
+
+### Rediseño y Mejora de la Sección Hero
+- **Fondo con Identidad de Marca:** Integración de imagen de fondo de caracter gráfico, combinada degradados y filtros de legibilidad.
+- **Diseño Centrado:** Alineación para títulos, descripciones y botones de acción.
+- **Paleta CMYK Vibrante:** Implementación de acentos en **Magenta** (`#e2007a`) para llamadas a la acción primarias y **Ámbar/Naranjo** (`#ff9e1b`) para badges e indicadores, reforzando la estética de la imprenta.

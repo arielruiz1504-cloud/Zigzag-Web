@@ -73,7 +73,7 @@ function initCategories() {
     srvBtn.setAttribute('data-delay', i * 80);
     srvBtn.onclick = () => { 
       switchCategory(i); 
-      document.getElementById('categorias').scrollIntoView({ behavior: 'smooth' }); 
+      categoryContentContainer.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
     };
     
     let itemsHtml = cat.items.slice(0,3).map(it => `
@@ -88,7 +88,6 @@ function initCategories() {
       </div>
       <span class="service-title">${cat.n}. ${cat.name}</span>
       <span class="service-desc">${cat.desc}</span>
-      <ul class="service-items-list">${itemsHtml}</ul>
       <span class="service-link">
         Ver categoría <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
       </span>

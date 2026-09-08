@@ -997,3 +997,7 @@ ul {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
+
+#category-content-container {
+  scroll-margin-top: 6rem; /* Compensa la altura del header + margen visual */
+}
