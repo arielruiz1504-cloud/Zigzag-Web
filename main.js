@@ -1,6 +1,3 @@
-// Inicializar Iconos
-lucide.createIcons();
-
 // Data de Categorías
 const categories = [
   {
@@ -40,47 +37,42 @@ const categories = [
   }
 ];
 
-// Variables de DOM
+// Nodos del DOM
 const categoryButtonsContainer = document.getElementById('category-buttons');
 const categoryContentContainer = document.getElementById('category-content-container');
 const servicesGrid = document.getElementById('services-grid');
 const footerCategories = document.getElementById('footer-categories');
 let activeCategory = 0;
 
-// Renderizar Categorías y Servicios
+// Inicialización de la UI
 function initCategories() {
+  if (!categoryButtonsContainer || !servicesGrid || !footerCategories) return;
+
   categoryButtonsContainer.innerHTML = '';
   servicesGrid.innerHTML = '';
   footerCategories.innerHTML = '';
 
   categories.forEach((cat, i) => {
-    // --- 1. Botones de Pestañas ---
+    // 1. Botones de Categorías
     const btn = document.createElement('button');
     btn.className = `cat-btn ${i === activeCategory ? 'active' : ''}`;
-    if(i === activeCategory) {
-      btn.style.backgroundColor = cat.color;
-      btn.style.borderColor = cat.color;
-      btn.style.color = '#fff';
-      btn.style.boxShadow = '0 4px 6px -1px rgba(0,0,0,0.1)';
+    btn.type = 'button';
+    if (i === activeCategory) {
+      applyActiveCategoryStyles(btn, cat.color);
     }
     btn.onclick = () => switchCategory(i);
-    btn.innerHTML = `<i data-lucide="${cat.icon}" style="width: 1rem; height: 1rem;"></i> ${cat.short}`;
+    btn.innerHTML = `<i data-lucide="${cat.icon}" class="icon-inline"></i> ${cat.short}`;
     categoryButtonsContainer.appendChild(btn);
 
-    // --- 2. Tarjetas de Servicios ---
+    // 2. Tarjetas de Servicios
     const srvBtn = document.createElement('button');
+    srvBtn.type = 'button';
     srvBtn.className = 'service-card reveal';
     srvBtn.setAttribute('data-delay', i * 80);
     srvBtn.onclick = () => { 
       switchCategory(i); 
-      categoryContentContainer.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+      categoryContentContainer?.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
     };
-    
-    let itemsHtml = cat.items.slice(0,3).map(it => `
-      <li style="display: flex; align-items: center; gap: 0.5rem;">
-        <span style="font-weight: 700; color: ${cat.color}">•</span>${it}
-      </li>
-    `).join('');
     
     srvBtn.innerHTML = `
       <div class="service-icon-box" style="background-color: color-mix(in srgb, ${cat.color} 12%, transparent)">
@@ -89,18 +81,19 @@ function initCategories() {
       <span class="service-title">${cat.n}. ${cat.name}</span>
       <span class="service-desc">${cat.desc}</span>
       <span class="service-link">
-        Ver categoría <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
+        Ver categoría <i data-lucide="arrow-right" class="icon-inline"></i>
       </span>
     `;
     servicesGrid.appendChild(srvBtn);
 
-    // --- 3. Enlaces del Footer ---
+    // 3. Menú Footer
     const footerLi = document.createElement('li');
-    footerLi.innerHTML = `<a href="#categorias" onclick="switchCategory(${i})">${cat.name}</a>`;
+    footerLi.innerHTML = `<a href="#categorias">${cat.name}</a>`;
+    footerLi.querySelector('a').onclick = () => switchCategory(i);
     footerCategories.appendChild(footerLi);
   });
 
-  // Añadir la última tarjeta especial a los servicios
+  // Tarjeta Especial de Servicios
   const specialSrv = document.createElement('div');
   specialSrv.className = 'service-card-special reveal';
   specialSrv.setAttribute('data-delay', 400);
@@ -109,27 +102,33 @@ function initCategories() {
     <h3>¿No encuentras lo que buscas?</h3>
     <p>Producimos piezas a medida: troqueles especiales, empaques, acabados con relieve, laminados y barnices selectivos.</p>
     <a href="#contacto" class="btn-special">
-      Consultar <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
+      Consultar <i data-lucide="arrow-right" class="icon-inline"></i>
     </a>
   `;
   servicesGrid.appendChild(specialSrv);
 
   renderCategoryContent();
-  lucide.createIcons();
+  refreshIcons();
 }
 
-// Cambiar Pestaña
+// Aplicar estilos de pestaña activa
+function applyActiveCategoryStyles(btn, color) {
+  btn.style.backgroundColor = color;
+  btn.style.borderColor = color;
+  btn.style.color = '#fff';
+  btn.style.boxShadow = '0 4px 6px -1px rgba(0,0,0,0.1)';
+}
+
+// Cambiar de Categoría
 function switchCategory(index) {
   activeCategory = index;
-  
   const btns = categoryButtonsContainer.querySelectorAll('.cat-btn');
+
   categories.forEach((cat, i) => {
     const btn = btns[i];
+    if (!btn) return;
     if (i === index) {
-      btn.style.backgroundColor = cat.color;
-      btn.style.borderColor = cat.color;
-      btn.style.color = '#fff';
-      btn.style.boxShadow = '0 4px 6px -1px rgba(0,0,0,0.1)';
+      applyActiveCategoryStyles(btn, cat.color);
     } else {
       btn.style.backgroundColor = '';
       btn.style.borderColor = '';
@@ -139,13 +138,15 @@ function switchCategory(index) {
   });
   
   renderCategoryContent();
-  lucide.createIcons();
+  refreshIcons();
 }
 
-// Renderizar área de contenido de la categoría actual
+// Renderizar contenido dinámico
 function renderCategoryContent() {
+  if (!categoryContentContainer) return;
+
   const cat = categories[activeCategory];
-  let itemsHtml = cat.items.map(it => `
+  const itemsHtml = cat.items.map(it => `
     <li class="category-list-item">
       <span class="category-check-icon" style="background-color: ${cat.color}">
         <i data-lucide="check" style="width: 0.875rem; height: 0.875rem;"></i>
@@ -166,64 +167,83 @@ function renderCategoryContent() {
       <p>${cat.desc}</p>
       <ul class="category-list">${itemsHtml}</ul>
       <a href="#contacto" class="btn-category-action">
-        Cotizar ${cat.short} <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
+        Cotizar ${cat.short} <i data-lucide="arrow-right" class="icon-inline"></i>
       </a>
     </div>
   `;
 }
 
-// Intersección (Scroll Reveal)
+// Scroll Reveal Observer
 function initScrollReveal() {
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.12
-  };
-
-  const observer = new IntersectionObserver((entries, observer) => {
+  const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const delay = entry.target.getAttribute('data-delay') || 0;
         setTimeout(() => {
           entry.target.classList.add('is-visible');
-        }, delay);
-        observer.unobserve(entry.target);
+        }, Number(delay));
+        obs.unobserve(entry.target);
       }
     });
-  }, observerOptions);
+  }, { root: null, threshold: 0.12 });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
 
-// Menú Mobile
-const mobileBtn = document.getElementById('mobile-menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-const iconOpen = document.getElementById('menu-icon-open');
-const iconClose = document.getElementById('menu-icon-close');
+// Menú Móvil
+function initMobileMenu() {
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
 
-mobileBtn.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
-  iconOpen.classList.toggle('hidden');
-  iconClose.classList.toggle('hidden');
-});
+  if (!mobileBtn || !mobileMenu) return;
 
-document.querySelectorAll('.mobile-link').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.add('hidden');
-    iconOpen.classList.remove('hidden');
-    iconClose.classList.add('hidden');
+  const toggleMenu = () => {
+    const isHidden = mobileMenu.classList.toggle('hidden');
+    iconOpen?.classList.toggle('hidden', !isHidden);
+    iconClose?.classList.toggle('hidden', isHidden);
+    mobileBtn.setAttribute('aria-expanded', !isHidden);
+  };
+
+  mobileBtn.addEventListener('click', toggleMenu);
+
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+      mobileBtn.setAttribute('aria-expanded', 'false');
+    });
   });
-});
+}
 
-// Formulario de Contacto
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  document.getElementById('form-success').classList.remove('hidden');
-  this.reset();
-});
+// Formulario de contacto
+function initContactForm() {
+  const form = document.getElementById('contact-form');
+  const successMsg = document.getElementById('form-success');
 
-// Ejecutar inicio al cargar la página
+  if (!form) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    successMsg?.classList.remove('hidden');
+    form.reset();
+  });
+}
+
+// Auxiliar para iconos
+function refreshIcons() {
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
+}
+
+// Inicialización general
 window.addEventListener('DOMContentLoaded', () => {
   initCategories();
   initScrollReveal();
+  initMobileMenu();
+  initContactForm();
+  refreshIcons();
 });

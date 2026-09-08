@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zig-Zag SpA | Imprenta y Soluciones Gráficas en Santiago</title>
+  <title>Zig-Zag SpA | Imprenta y Soluciones Gráficas</title>
   <meta name="description" content="Imprenta y soluciones gráficas integrales: branding, publicidad impresa, diseño editorial, gran formato y diseño digital. Cotiza tu proyecto en Santiago." />
   
   <!-- Favicon personalizado -->
@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   
-  <!-- Estilos CSS Nativos -->
+  <!-- Estilos CSS -->
   <link rel="stylesheet" href="styles.css">
 
   <!-- Lucide Icons CDN -->
@@ -37,7 +37,7 @@
         <a href="#contacto" class="btn-cta-nav">Cotizar Proyecto</a>
       </nav>
 
-      <button type="button" id="mobile-menu-btn" aria-label="Abrir menú" class="mobile-menu-btn">
+      <button type="button" id="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu" class="mobile-menu-btn">
         <i data-lucide="menu" id="menu-icon-open"></i>
         <i data-lucide="x" id="menu-icon-close" class="hidden"></i>
       </button>
@@ -108,11 +108,8 @@
     <div id="category-content-container" class="category-content-box reveal"></div>
   </section>
 
-  
-
   <!-- Nosotros -->
   <section id="nosotros" class="section-container bg-white border-top">
-    <!-- Header centrado -->
     <div class="section-header reveal">
       <span class="section-tag"><span class="dot-amber"></span>Nosotros</span>
       <h2>Comprometidos con la Excelencia</h2>
@@ -120,9 +117,7 @@
       <div class="cmyk-bar"></div>
     </div>
 
-    <!-- Layout con Párrafo + Stats y Tarjetas de Valor -->
     <div class="about-grid reveal">
-      <!-- Columna Izquierda: Parrafo Corporativo + Hero Stats -->
       <div class="about-bio-box">
         <div class="about-text-content">
           <h3>+18 años Transformando ideas</h3>
@@ -131,7 +126,6 @@
           </p>
         </div>
 
-        <!-- Módulo de Métricas (Hero Stats) -->
         <div class="about-stats-grid">
           <div class="stat-item">
             <span class="stat-number">+18</span>
@@ -148,10 +142,9 @@
         </div>
       </div>
 
-      <!-- Columna Derecha: Tarjetas con Íconos -->
       <div class="about-features">
         <div class="about-feature-card">
-          <div class="feature-icon-box" style="background-color: rgba(0, 159, 227, 0.1); color: var(--cyan-brand);">
+          <div class="feature-icon-box bg-cyan-light text-cyan">
             <i data-lucide="award"></i>
           </div>
           <div>
@@ -161,7 +154,7 @@
         </div>
 
         <div class="about-feature-card">
-          <div class="feature-icon-box" style="background-color: rgba(228, 0, 124, 0.1); color: var(--magenta-brand);">
+          <div class="feature-icon-box bg-magenta-light text-magenta">
             <i data-lucide="leaf"></i>
           </div>
           <div>
@@ -171,7 +164,7 @@
         </div>
 
         <div class="about-feature-card">
-          <div class="feature-icon-box" style="background-color: rgba(255, 158, 27, 0.1); color: var(--amber-brand);">
+          <div class="feature-icon-box bg-amber-light text-amber">
             <i data-lucide="zap"></i>
           </div>
           <div>
@@ -182,7 +175,6 @@
       </div>
     </div>
 
-    <!-- Tarjeta Garantía Zig-Zag (Ancho Completo) -->
     <div class="about-card-banner reveal" data-delay="150">
       <div class="banner-content">
         <div class="banner-text">
@@ -197,7 +189,6 @@
 
   <!-- Contacto -->
   <section id="contacto" class="section-container bg-secondary border-top">
-    <!-- Header de sección centrado -->
     <div class="section-header reveal">
       <span class="section-tag"><span class="dot-amber"></span>Contacto</span>
       <h2>Hablemos de tu Próximo Proyecto</h2>
@@ -206,7 +197,6 @@
     </div>
 
     <div class="contact-wrapper reveal">
-      <!-- Formulario Centrado -->
       <div class="contact-form-container">
         <form id="contact-form" class="contact-form">
           <div class="form-row">
@@ -245,20 +235,19 @@
           </div>
 
           <button type="submit" class="btn-submit">
-            Enviar Mensaje <i data-lucide="send" style="width: 1.125rem; height: 1.125rem;"></i>
+            Enviar Mensaje <i data-lucide="send" class="icon-inline"></i>
           </button>
 
           <div id="form-success" class="form-success-msg hidden">
-            <i data-lucide="check-circle" style="width: 1.25rem; height: 1.25rem;"></i>
+            <i data-lucide="check-circle" class="icon-inline-lg"></i>
             ¡Mensaje enviado con éxito! Nos pondremos en contacto contigo a la brevedad.
           </div>
         </form>
       </div>
 
-      <!-- Tarjetas de Información Directa Debajo del Formulario -->
       <div class="contact-cards-grid">
         <div class="contact-info-card">
-          <div class="contact-card-icon" style="background-color: rgba(0, 159, 227, 0.1); color: var(--cyan-brand);">
+          <div class="contact-card-icon bg-cyan-light text-cyan">
             <i data-lucide="phone"></i>
           </div>
           <div>
@@ -269,7 +258,7 @@
         </div>
 
         <div class="contact-info-card">
-          <div class="contact-card-icon" style="background-color: rgba(228, 0, 124, 0.1); color: var(--magenta-brand);">
+          <div class="contact-card-icon bg-magenta-light text-magenta">
             <i data-lucide="mail"></i>
           </div>
           <div>
@@ -280,7 +269,7 @@
         </div>
 
         <div class="contact-info-card">
-          <div class="contact-card-icon" style="background-color: rgba(255, 158, 27, 0.1); color: var(--amber-brand);">
+          <div class="contact-card-icon bg-amber-light text-amber">
             <i data-lucide="map-pin"></i>
           </div>
           <div>
@@ -337,7 +326,7 @@
           title="Perfil de GitHub del Diseñador"
           aria-label="Perfil de GitHub"
         >
-          <img src="assets/github-icon.png" alt="GitHub Logo" class="github-icon-img" />
+          <img src="assets/github-icon.png" alt="GitHub Logo" class="github-icon-img" width="24" height="24" />
         </a>
       </div>
     </div>
