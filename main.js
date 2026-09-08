@@ -7,14 +7,14 @@ const categories = [
     id: "branding", n: "01", name: "Identidad de Marca", short: "Branding",
     desc: "Creamos o renovamos la imagen visual de tu negocio con una identidad coherente en todos sus puntos de contacto.",
     items: ["Diseño de logotipos", "Manual de marca", "Papelería corporativa", "Tarjetas y credenciales"],
-    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80",
+    image: "assets/branding.jpeg",
     icon: "palette", color: "var(--cyan-brand)"
   },
   {
     id: "publicidad", n: "02", name: "Diseño Publicitario", short: "Publicidad",
     desc: "Materiales pensados para promocionar productos y servicios con impacto real en el punto de venta.",
     items: ["Flyers y folletos", "Catálogos de productos", "Merchandising (tazas, poleras, lápices)", "Afiches y volantes"],
-    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80",
+    image: "assets/publicitario.jpeg",
     icon: "megaphone", color: "var(--magenta-brand)"
   },
   {
@@ -28,14 +28,14 @@ const categories = [
     id: "granformato", n: "04", name: "Gran Formato e Impresión", short: "Gran Formato",
     desc: "Impresión física a gran escala para máxima visibilidad exterior, con materiales resistentes a la intemperie.",
     items: ["Letreros y avisos", "Vinilos decorativos", "Señalética de seguridad", "Pendones y roller banners"],
-    image: "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?auto=format&fit=crop&w=1200&q=80",
+    image: "assets/granformato.jpeg",
     icon: "printer", color: "var(--magenta-brand)"
   },
   {
     id: "digital", n: "05", name: "Diseño Digital y Redes", short: "Digital",
     desc: "Piezas digitales consistentes con tu marca para redes sociales, e-commerce y presentaciones corporativas.",
     items: ["Kits para Instagram, Facebook y LinkedIn", "Banners web para e-commerce", "Presentaciones corporativas", "Firmas de correo y plantillas"],
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    image: "assets/digital.jpg",
     icon: "monitor-smartphone", color: "var(--teal-brand)"
   }
 ];
